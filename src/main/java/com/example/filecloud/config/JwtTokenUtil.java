@@ -1,7 +1,7 @@
-package com.example.temp.config;
+package com.example.filecloud.config;
 
 
-import com.example.temp.model.User;
+import com.example.filecloud.entity.User;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -84,7 +84,6 @@ public class JwtTokenUtil implements Serializable {
     public String generateToken(User userDetails) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
-        //claims.put("password", userDetails.getPassword());
         claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
     }

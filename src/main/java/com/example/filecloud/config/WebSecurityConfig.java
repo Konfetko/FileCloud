@@ -1,4 +1,4 @@
-package com.example.temp.config;
+package com.example.filecloud.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.example.temp.service.UserService;
+import com.example.filecloud.service.UserService;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
@@ -44,9 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/authentication/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/users/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/message").hasAuthority("ADMIN")
+                .antMatchers("/files/**").hasAuthority("USER")
                 .anyRequest().hasAnyAuthority("ADMIN", "USER");
 
         httpSecurity

@@ -1,4 +1,4 @@
-package com.example.temp.config;
+package com.example.filecloud.config;
 
 public class Const {
     public static final long EXPIRATION_TIME = 24 * 60 * 60 * 1000;     // 24 hours

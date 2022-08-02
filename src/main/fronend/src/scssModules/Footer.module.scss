@@ -1,0 +1,26 @@
+.background{
+  background-color: black;
+  color:white;
+  width: 100%;
+  padding-top: 8px;
+
+}
+.lists{
+}
+.listAbilities{
+  list-style: none;
+  text-align: center;
+  margin-bottom: 100px;
+  &>li{
+    font-size: 17pt;
+  }
+
+  margin-left: -25px;
+}
+.createdBy{
+  text-align: center;
+  font-weight: bold;
+  font-size: 15pt;
+  padding-bottom: 50px;
+
+}

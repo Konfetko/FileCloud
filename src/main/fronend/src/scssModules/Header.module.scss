@@ -1,0 +1,38 @@
+$left-right-padding: 10px;
+.headContainer{
+  height: 75px;
+  background-color: #7676e5;
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.links{
+  width: 50%;
+  text-align: center;
+  margin: auto;
+
+}
+.link{
+  padding: 0px $left-right-padding 0px $left-right-padding;
+}
+.noneDecor{
+  color:white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18pt;
+}
+.logo{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 25px;
+  font-size: 25pt;
+  font-weight: bold;
+  color:white;
+  margin-right: -10%;
+
+}
+.logoLink{
+  text-decoration: none ;
+  color:white;
+}

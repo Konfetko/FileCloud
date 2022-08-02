@@ -1,0 +1,80 @@
+@keyframes buttonHover {
+  50% {box-shadow: 0px 5px 0px white;}
+}
+
+.authBlock{
+  padding-top: 5%;
+  height:1028px;
+  background-size: 100%;
+  background-color: #1D2033;
+  min-width: 600px;
+}
+.form{
+
+  width: 300px;
+  margin: auto;
+  min-width: 300px;
+  padding: 50px 150px 150px 150px;
+  max-height: 500px;
+  color:white;
+}
+.title{
+  text-align: center;
+  color:white;
+  font-size: 25pt;
+  margin-bottom: 50px;
+}
+.buttonShow{
+  margin-top: 5px;
+  margin-left: -40px;
+  border-radius: 10px;
+  font-size: 12pt;
+  color:white;
+  background-color: #141724;
+  font-size: 15pt;
+  &:hover{
+    cursor: pointer;
+  }
+}
+input{
+  margin-left: -40px;
+  width: 350px;
+  text-align: left;
+  padding: 20px;
+  background-color:#141724;
+  color:white;
+  border-radius: 10px;
+
+  &::placeholder{
+    font-size: 15pt;
+    color:gray;
+    text-align: left;
+  }
+}
+.button{
+  width: 390px;
+  height: 50px;
+  margin-top: 30px;
+  color:white;
+  border-radius: 10px;
+  margin-left: -40px;
+  &:hover{
+    animation:buttonHover 2s ease;
+    cursor: pointer;
+  }
+}
+.loginButton{
+  background-color:#235FE3;
+}
+.createButton{
+  border:3px solid #235FE3;
+  background-color: #191C2C;
+}
+.label{
+  margin-left: -40px;
+  font-size: 15pt;
+  font-weight: bold;
+}
+.block{
+  margin-top: 40px;
+}

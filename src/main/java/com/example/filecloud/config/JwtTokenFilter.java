@@ -1,7 +1,7 @@
-package com.example.temp.config;
+package com.example.filecloud.config;
 
-import com.example.temp.InMemoryDao;
-import com.example.temp.model.User;
+import com.example.filecloud.entity.User;
+import com.example.filecloud.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import java.io.IOException;
 public class JwtTokenFilter extends OncePerRequestFilter {
 
     @Autowired
-    private InMemoryDao inMemoryDao;
+    private UserRepository userRepository;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -29,13 +29,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader( Const.HEADER_STRING );
-        response.setHeader("dsgdss","dsggdsds");
-        String a = request.getParameter("username");
         if (authHeader != null && authHeader.startsWith( Const.TOKEN_PREFIX )) {
             final String authToken = authHeader.substring( Const.TOKEN_PREFIX.length() );
             String username = jwtTokenUtil.getUsernameFromToken(authToken);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                User userDetails = this.inMemoryDao.loadUserByUsername(username);
+                User userDetails = userRepository.findUserByUsername(username);
                 if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                             userDetails, null, userDetails.getAuthorities());
@@ -45,7 +43,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
-                response.setHeader("access_token", jwtTokenUtil.generateToken(userDetails));
+                //response.setHeader("access_token", jwtTokenUtil.generateToken(userDetails));
 
             }
         }
