@@ -19,14 +19,15 @@ public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -5625635588908941275L;
 
-    private static final String CLAIM_KEY_USERNAME = "sub";
+    private static final String CLAIM_KEY_USERNAME = "username";
+    private static final String CLAIM_KEY_ID = "id";
     private static final String CLAIM_KEY_CREATED = "created";
 
     public String getUsernameFromToken(String token) {
         String username;
         try {
             final Claims claims = getClaimsFromToken(token);
-            username = claims.getSubject();
+            username = (String) claims.get(CLAIM_KEY_USERNAME);
         } catch (Exception e) {
             username = null;
         }
@@ -84,6 +85,7 @@ public class JwtTokenUtil implements Serializable {
     public String generateToken(User userDetails) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
+        claims.put(CLAIM_KEY_ID, userDetails.getIdUser());
         claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
     }

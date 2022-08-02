@@ -1,11 +1,14 @@
 package com.example.filecloud.service;
 
+import com.auth0.jwt.JWT;
 import com.example.filecloud.entity.Role;
+import com.example.filecloud.exeption.ExpiredToken;
 import com.example.filecloud.repository.RolesRepository;
 import com.example.filecloud.repository.UserRepository;
 import com.example.filecloud.config.JwtTokenUtil;
 import com.example.filecloud.entity.User;
-import com.example.filecloud.request.UserRequest;
+import com.example.filecloud.request.UserDTO;
+import com.example.filecloud.response.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,7 +35,7 @@ public class AuthService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public String login(UserRequest user) {
+    public JwtResponse login(UserDTO user) {
 
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken( user.getUsername(), user.getPassword() );
 
@@ -48,10 +51,15 @@ public class AuthService {
             return null;
         }
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return token;
+        JwtResponse response = new JwtResponse();
+        response.setUser(userDetails);
+        response.setAccessToken(token);
+        response.setRefreshToken(token);
+
+        return response;
     }
 
-    public User register(User userToAdd ) {
+    public JwtResponse register(User userToAdd ) {
 
         final String username = userToAdd.getUsername();
         boolean flag = userRepository.existsUserByUsername(username);
@@ -59,12 +67,36 @@ public class AuthService {
             return null;
         }
         Role role =roleRepository.findRoleByRoleTitle(userToAdd.getRole().getRoleTitle());
+
         if(role!=null)
             userToAdd.setRole(role);
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final String rawPassword = userToAdd.getPassword();
         userToAdd.setPassword( encoder.encode(rawPassword) );
-        var a= userRepository.save(userToAdd);
-        return a;
+
+        var user = userRepository.save(userToAdd);
+
+        final String token = jwtTokenUtil.generateToken(userToAdd);
+
+        JwtResponse response = new JwtResponse();
+        response.setUser(user);
+        response.setAccessToken(token);
+        response.setRefreshToken(token);
+        return response;
+    }
+    public JwtResponse refreshUser(String token) {
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        if(username==null)
+            throw new NullPointerException("Username is null");
+        User user = userRepository.findUserByUsername(username);
+        if(!jwtTokenUtil.validateToken(token,user))
+            throw new ExpiredToken("Token is expired");
+
+        JwtResponse response = new JwtResponse();
+        response.setAccessToken(jwtTokenUtil.refreshToken(token));
+        response.setRefreshToken(jwtTokenUtil.refreshToken(token));
+        response.setUser(user);
+        return response;
     }
 }

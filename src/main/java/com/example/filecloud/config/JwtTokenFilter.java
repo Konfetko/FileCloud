@@ -28,6 +28,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+
         String authHeader = request.getHeader( Const.HEADER_STRING );
         if (authHeader != null && authHeader.startsWith( Const.TOKEN_PREFIX )) {
             final String authToken = authHeader.substring( Const.TOKEN_PREFIX.length() );

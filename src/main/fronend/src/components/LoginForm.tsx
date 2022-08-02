@@ -1,22 +1,24 @@
-import React, {useState} from 'react';
-import {IUser} from "../models/IUser";
+import React, {useContext, useState} from 'react';
+import {IUserDB} from "../models/IUserDB";
 import {useNavigate} from "react-router";
-import UserService from "../services/UserService";
+import AuthService from "../services/AuthService";
 import cls from "../scssModules/AuthorizationPage.module.scss";
 import IChangeVisibility from "../models/IChangeVisibility";
+import {Context} from "../index";
+import IUserClient from "../models/IUserClient";
 
 
 
 const LoginForm = ({change}:IChangeVisibility) => {
 
-    let [user,setUser] = useState<IUser>({username:"",password:"",role:{roleTitle:""}})
+    let [user,setUser] = useState<IUserClient>({ username:"",password:"",role:{roleTitle:""}})
     let [inputType,setInputType]= useState<String>("password")
     let navigate = useNavigate()
+    const {store} = useContext(Context)
 
-    const authorize= (event: React.FormEvent)=>{
+    const authorize= async(event: React.FormEvent)=>{
         event.preventDefault()
-        let userService: UserService = new UserService()
-        userService.authorizeUser(user)
+        const response = await store.login(user)
         //navigate()
     }
     const setUsername=(event:React.KeyboardEvent<HTMLInputElement>)=>{

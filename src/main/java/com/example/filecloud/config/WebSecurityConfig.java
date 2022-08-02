@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/users/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/users/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/message").hasAuthority("ADMIN")
                 .antMatchers("/files/**").hasAuthority("USER")

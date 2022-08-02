@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
-import {IUser} from "../models/IUser";
+import {IUserDB} from "../models/IUserDB";
 import {useNavigate} from "react-router";
-import UserService from "../services/UserService";
+import AuthService from "../services/AuthService";
 import cls from "../scssModules/AuthorizationPage.module.scss";
 import IChangeVisibility from "../models/IChangeVisibility";
+import IUserClient from "../models/IUserClient";
 
 
 
 const RegistrationForm = ({change}:IChangeVisibility) => {
 
-    let [user,setUser] = useState<IUser>({username:"",password:"",role:{roleTitle:"USER"}})
+    let [user,setUser] = useState<IUserClient>({username:"",password:"",role:{roleTitle:"USER"}})
     let [inputType,setInputType]= useState<String>("password")
     let navigate = useNavigate()
 
     const authorize= (event: React.FormEvent)=>{
         event.preventDefault()
-        let userService: UserService = new UserService()
+        let userService: AuthService = new AuthService()
         userService.registrationUser(user)
         userService.authorizeUser(user)
     }
