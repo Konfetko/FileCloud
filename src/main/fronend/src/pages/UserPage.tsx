@@ -1,16 +1,19 @@
-import React, {useContext, useEffect} from 'react';
-import {Context} from "../index";
-import  {useFiles} from "../hooks/files";
-import IUserFile from "../models/IUserFile";
+import React from 'react';
+import FileList from "../components/FileList";
+import Layout from "../components/Layout";
+import ToolBar from "../components/ToolBar";
+import cls from "../scssModules/UserPage.module.scss"
 
 const UserPage = () => {
-    const {store} = useContext(Context)
-    const {files}=useFiles()
 
     return (
-        <div>
-            {files.map(x=><h1 key={x.idFile}>{x.title}</h1>)}
-        </div>
+
+        <Layout>
+            <div className={cls.doubleContainer}>
+                <ToolBar/>
+                <FileList/>
+            </div>
+        </Layout>
     );
 };
 
