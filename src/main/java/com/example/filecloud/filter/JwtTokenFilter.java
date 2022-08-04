@@ -1,5 +1,7 @@
-package com.example.filecloud.config;
+package com.example.filecloud.filter;
 
+import com.example.filecloud.config.Const;
+import com.example.filecloud.config.JwtTokenUtil;
 import com.example.filecloud.entity.User;
 import com.example.filecloud.repository.UserRepository;
 import jakarta.servlet.FilterChain;
@@ -45,7 +47,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
-                //response.setHeader("access_token", jwtTokenUtil.generateToken(userDetails));
 
             }
         }

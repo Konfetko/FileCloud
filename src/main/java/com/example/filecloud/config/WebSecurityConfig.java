@@ -1,5 +1,6 @@
 package com.example.filecloud.config;
 
+import com.example.filecloud.filter.JwtTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,11 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/users/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/users/**").permitAll()
-                .antMatchers("/actuator/**").permitAll()
-                .antMatchers("/message").hasAuthority("ADMIN")
-                .antMatchers("/files/**").hasAuthority("USER")
+                .antMatchers("/users/**").permitAll()
+                .antMatchers("/files/**").hasAnyAuthority("USER","ADMIN")
                 .anyRequest().hasAnyAuthority("ADMIN", "USER");
 
         httpSecurity

@@ -7,7 +7,6 @@ import {Context} from "../index";
 
 const AuthorizationPage = () => {
     let [logining,setLogining]=useState(true)
-    let {store} = useContext(Context)
 
     return(
         <>

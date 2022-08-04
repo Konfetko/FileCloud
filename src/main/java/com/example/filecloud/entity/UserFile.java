@@ -33,9 +33,9 @@ public class UserFile {
     @JoinColumn(name = "iduser",nullable = false)
     private User user;
 
-    @Lob
-    @Column(name = "fileBin")
-    private Blob fileBin;
+    //@Lob
+    //@Column(name = "fileBin")
+    //private Blob fileBin;
 
     public UserFile(String title, Date dateUpload, User user) {
         this.title = title;

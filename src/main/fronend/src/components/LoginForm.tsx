@@ -19,7 +19,8 @@ const LoginForm = ({change}:IChangeVisibility) => {
     const authorize= async(event: React.FormEvent)=>{
         event.preventDefault()
         const response = await store.login(user)
-        //navigate()
+        if(store.isAuth)
+            navigate(`/user/files${store.user.idUser}`)
     }
     const setUsername=(event:React.KeyboardEvent<HTMLInputElement>)=>{
         setUser(prev=>({...prev,username:event.target.value}))

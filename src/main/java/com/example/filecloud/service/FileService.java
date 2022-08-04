@@ -6,6 +6,7 @@ import com.example.filecloud.fileUpload.FileManager;
 
 import com.example.filecloud.repository.UserFileRepository;
 import com.example.filecloud.repository.UserRepository;
+import com.example.filecloud.response.FileResponse;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -25,8 +28,12 @@ public class FileService {
     private final List<FileManager> fileManagers;
 
 
-    public List<UserFile> getUserFiles(Long idUser){
-        return (List<UserFile>) fileRepository.findAll().stream().filter(x->x.getUser().getIdUser()==idUser);
+    public List<FileResponse> getUserFiles(Long idUser){
+        var files = fileRepository.findAll().stream().filter(x->x.getUser().getIdUser()==idUser).collect(Collectors.toList());
+        var listReturn = new ArrayList<FileResponse>();
+        for(var file :files)
+            listReturn.add(new FileResponse(file.getIdFile(),file.getTitle(),file.getDateUpload()));
+        return  listReturn;
     }
     @Transactional
     public void deleteFile(Long userID,Long fileID){

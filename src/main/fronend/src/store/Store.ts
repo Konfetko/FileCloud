@@ -5,22 +5,25 @@ import axios from "axios";
 import IAuthResponse from "../models/IAuthResponse";
 import APIurl from "../resources/APIurl";
 import IUserClient from "../models/IUserClient";
+import IUserFile from "../models/IUserFile";
+import FileService from "../services/FileService";
 
 export default class Store{
-     _user = {} as IUserDB
-     _isAuth:boolean = false
+     user = {} as IUserDB
+     isAuth:boolean = false
      authService= {} as AuthService
+     fileService= {} as FileService
     constructor() {
          this.authService=new AuthService()
+         this.fileService=new FileService()
         makeAutoObservable(this)
     }
-
     setUser(value: IUserDB) {
-        this._user = value;
+        this.user = value
     }
 
     setAuth(value: boolean) {
-        this._isAuth = value;
+        this.isAuth = value
     }
     async login(user:IUserClient){
         try{
@@ -61,6 +64,14 @@ export default class Store{
              localStorage.setItem("token",response.data.accessToken)
              this.setAuth(true)
              this.setUser(response.data.user)
+         }catch (e){
+             console.log(e)
+         }
+    }
+    async getFiles(userID:number){
+         try{
+             const response = await this.fileService.getFiles(userID)
+             return response.data
          }catch (e){
              console.log(e)
          }

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(value="http://localhost:3000",allowCredentials = "true")
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
@@ -45,8 +45,5 @@ public class UserController {
                 :ResponseEntity.ok(response);
 
     }
-    @GetMapping("/message")
-    public String message() throws AuthenticationException {
-        return "you are admin";
-    }
+
 }
