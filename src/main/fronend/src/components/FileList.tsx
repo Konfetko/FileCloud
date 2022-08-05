@@ -2,14 +2,16 @@ import React from 'react';
 import {useFiles} from "../hooks/files";
 import File from '../components/File'
 import cls from '../scssModules/FileList.module.scss'
-import IUserFile from "../models/IUserFile";
 
+interface IFileListProps{
+    openFile:(fileId:number)=>void
+}
 
-const FileList = () => {
+const FileList = ({openFile}:IFileListProps) => {
     const {files}=useFiles()
     return (
         <div className={cls.container}>
-            {files.map(x=><File file={x}/>)}
+            {files.map(x=><File file={x} onClick={openFile}/>)}
         </div>
     );
 };

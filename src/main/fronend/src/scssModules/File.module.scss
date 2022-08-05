@@ -1,0 +1,35 @@
+$left-right-margin: 40px;
+$file-size:310px;
+.outer{
+  border:1px solid black;
+  margin-left: $left-right-margin;
+  margin-right: $left-right-margin;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: $file-size;
+  height: $file-size;
+}
+.title,.upload{
+  font-size: 15pt;
+  text-align: center;
+}
+
+.image{
+  width: 250px;
+  margin-left: 10%;
+}
+.inner,.hovered{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.hovered{
+
+  &:hover{
+    background-color: blue;
+    opacity: 7.5%;
+  }
+}

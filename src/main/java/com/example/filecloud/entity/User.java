@@ -53,13 +53,6 @@ public class User implements UserDetails {
 
 
 
-
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
-    public List<UserFile> getFiles() {
-        return files;
-    }
-
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idrole")

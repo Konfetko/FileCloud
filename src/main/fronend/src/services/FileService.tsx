@@ -1,5 +1,4 @@
 import sender from "../resources/http/httpAxios";
-import header from "../components/Header";
 import {AxiosResponse} from "axios";
 import IUserFile from "../models/IUserFile";
 

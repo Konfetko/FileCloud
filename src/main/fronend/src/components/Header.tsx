@@ -1,14 +1,15 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 import cls from "../scssModules/Header.module.scss"
 import {Context} from "../index";
-import {useUserId} from "../hooks/user";
+import {useUser} from "../hooks/user";
 
 const Header = () => {
-    const {user} = useUserId()
-    useEffect(()=>{
-
-    },[])
+    const {user} = useUser()
+    const {store} = useContext(Context)
+    const logOut = async()=>{
+        await store.logout()
+    }
     return (
         <header >
             <nav className={cls.headContainer}>
@@ -21,7 +22,7 @@ const Header = () => {
                 <div className={cls.links}>
 
                     {
-                        user==null
+                        user===null||user===undefined
                             ?<span
                             className={cls.link}>
                                 <Link
@@ -32,18 +33,29 @@ const Header = () => {
                             :<span
                                 className={cls.link}>
                                 <Link
-                                    to={`/user/files${user.idUser}`}
+                                    to={`/user/files${user?.idUser}`}
                                     className={cls.noneDecor}>
                                 Мои файлы</Link>
                             </span>
                     }
                     <span
                         className={cls.link}>
-                    <Link
+                        <Link
                         to={"/"}
                         className={cls.noneDecor}>
                         Главная</Link>
-                </span>
+                    </span>
+                    {
+                        user!=null&&
+                        <span
+                            className={cls.link }>
+                        <Link
+                            to={"/"}
+                            onClick={logOut}
+                            className={cls.noneDecor+" "+cls.logout}>
+                        Выйти</Link>
+                        </span>
+                    }
                 </div>
             </nav>
         </header>

@@ -40,11 +40,5 @@ public class UserFile {
         this.dateUpload = dateUpload;
         this.user = user;
     }
-//    @JsonBackReference
-//    @ManyToOne
-//    @JoinColumn(name = "iduser")
-//
-//    public User getUser() {
-//        return user;
-//    }
+
 }

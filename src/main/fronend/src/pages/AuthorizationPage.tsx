@@ -1,13 +1,17 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {useNavigate} from "react-router";
-import loginForm from "../components/LoginForm";
 import LoginForm from "../components/LoginForm";
 import RegistrationForm from "../components/RegistrationForm";
-import {Context} from "../index";
+import {useUser} from "../hooks/user";
 
 const AuthorizationPage = () => {
     let [logining,setLogining]=useState(true)
-
+    const navigate = useNavigate()
+    const {user} = useUser()
+    useEffect(()=>{
+        if(user!=null)
+            navigate(`/user/files${user.idUser}`)
+    },[user])
     return(
         <>
             {
