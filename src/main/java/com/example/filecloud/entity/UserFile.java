@@ -3,15 +3,13 @@ package com.example.filecloud.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.sql.Blob;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -28,7 +26,7 @@ public class UserFile {
     @Column(name = "dateupload")
     private Date dateUpload;
 
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToOne
     @JoinColumn(name = "iduser",nullable = false)
     private User user;
@@ -42,11 +40,11 @@ public class UserFile {
         this.dateUpload = dateUpload;
         this.user = user;
     }
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "iduser")
-
-    public User getUser() {
-        return user;
-    }
+//    @JsonBackReference
+//    @ManyToOne
+//    @JoinColumn(name = "iduser")
+//
+//    public User getUser() {
+//        return user;
+//    }
 }

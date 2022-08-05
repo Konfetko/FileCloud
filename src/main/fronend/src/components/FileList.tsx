@@ -2,6 +2,8 @@ import React from 'react';
 import {useFiles} from "../hooks/files";
 import File from '../components/File'
 import cls from '../scssModules/FileList.module.scss'
+import IUserFile from "../models/IUserFile";
+
 
 const FileList = () => {
     const {files}=useFiles()

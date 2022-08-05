@@ -29,7 +29,7 @@ public class FileService {
 
 
     public List<FileResponse> getUserFiles(Long idUser){
-        var files = fileRepository.findAll().stream().filter(x->x.getUser().getIdUser()==idUser).collect(Collectors.toList());
+        var files = userRepository.findById(idUser).get().getFiles();
         var listReturn = new ArrayList<FileResponse>();
         for(var file :files)
             listReturn.add(new FileResponse(file.getIdFile(),file.getTitle(),file.getDateUpload()));

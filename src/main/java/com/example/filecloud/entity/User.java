@@ -37,8 +37,9 @@ public class User implements UserDetails {
     @JoinColumn(name = "idrole",nullable = false)
     private Role role;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Set<UserFile> files;
+    @JsonBackReference
+    @OneToMany(mappedBy = "user")
+    private List<UserFile> files;
 
 
 
@@ -55,7 +56,7 @@ public class User implements UserDetails {
 
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
-    public Set<UserFile> getFiles() {
+    public List<UserFile> getFiles() {
         return files;
     }
 
