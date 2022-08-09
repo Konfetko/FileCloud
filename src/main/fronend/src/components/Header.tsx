@@ -46,7 +46,7 @@ const Header = () => {
                         Главная</Link>
                     </span>
                     {
-                        user!=null&&
+                        user!==null&& user!==undefined?
                         <span
                             className={cls.link }>
                         <Link
@@ -54,7 +54,7 @@ const Header = () => {
                             onClick={logOut}
                             className={cls.noneDecor+" "+cls.logout}>
                         Выйти</Link>
-                        </span>
+                        </span>:<></>
                     }
                 </div>
             </nav>

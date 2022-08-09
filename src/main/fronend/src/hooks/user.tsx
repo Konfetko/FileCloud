@@ -1,9 +1,9 @@
 
 import {useEffect, useState} from "react";
-import {IUserDB} from "../models/IUserDB";
+import IUserJWT from "../models/IUserJWT";
 
 export  function useUser(){
-    const [user,setUser]=useState<IUserDB>()
+    const [user,setUser]=useState<IUserJWT>()
     function parseJwt(token:string) {
         if (!token || token==='null')return;
         const base64Url = token.split('.')[1];
@@ -13,6 +13,11 @@ export  function useUser(){
     useEffect(()=>{
         let token = localStorage.getItem("token")
         setUser(parseJwt(String(token)))
+        if(Date.now()>=Number(user?.exp)*1000) {
+            setUser({idUser: 0, created: 0, exp: 0, username: ""})
+            localStorage.removeItem("token")
+        }
+
     },[])
     return {user}
 }

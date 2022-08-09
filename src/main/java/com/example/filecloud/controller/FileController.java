@@ -1,14 +1,31 @@
 package com.example.filecloud.controller;
 
+import com.example.filecloud.entity.UserFile;
+import com.example.filecloud.fileUpload.LobConverter;
+import com.example.filecloud.repository.UserFileRepository;
+import com.example.filecloud.repository.UserRepository;
 import com.example.filecloud.response.FileResponse;
 import com.example.filecloud.service.FileService;
 import com.example.filecloud.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,9 +33,12 @@ import java.util.List;
 @CrossOrigin(value="http://localhost:3000",allowCredentials = "true")
 @AllArgsConstructor
 @RequestMapping("/files/")
+@Slf4j
 public class FileController {
     private final FileService fileService;
     private final UserService userService;
+    private final UserFileRepository fileRepository;
+    private final UserRepository userRepository;
 
     @PostMapping(path="/fileupload{userId}",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
@@ -34,8 +54,14 @@ public class FileController {
                 ?ResponseEntity.badRequest().body("Файлы отстутствуют")
                 :ResponseEntity.ok(files);
     }
-    @GetMapping(path = "/getFile{userId}&{fileTitle}")
-    public ResponseEntity sendUserFile(@PathVariable("userId") Long userId,@PathVariable("fileTitle") String fileTitle){
-        return ResponseEntity.ok(fileService.getUserFiles(userId));
+    @GetMapping("/getFile{fileId}")
+    public ResponseEntity sendUserFile(@PathVariable("fileId") Long fileId) throws IOException, SQLException {
+        Blob blobFile = fileService.getUserFile(fileId);
+        return blobFile==null
+                ?ResponseEntity.badRequest().body("file is null")
+                :ResponseEntity.ok(new InputStreamResource(blobFile.getBinaryStream()));
+
+
+
     }
 }

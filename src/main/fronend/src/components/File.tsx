@@ -1,20 +1,22 @@
 import React from 'react';
-import IUserFile from "../models/IUserFile";
 import cls from '../scssModules/File.module.scss'
-interface IFileProps{
-    file:IUserFile,
-    onClick:(fileId:number)=>void
-}
+import IFileProps from "../models/props/IFileProps";
 
-const File = ({file,onClick}:IFileProps) => {
+
+const File = ({file,openFile,openContextMenu}:IFileProps) => {
     return (
-        <div className={cls.outer} onClick={()=>onClick(file.idFile)}>
+        <div
+            className={cls.outer}
+            onContextMenu={(e)=>openContextMenu(file.idFile,e)}
+            onDoubleClick={()=>openFile(file.idFile)}
+        >
             <div className={cls.inner}>
-                <div className={cls.title}>{file.title}</div>
+
                 <div >
                     <img src={require('../images/filePNG.png')} alt="file" className={cls.image}/>
                 </div>
-                <div className={cls.upload}>{String(file.dateUpload).substring(0,10)}</div>
+                <div className={cls.title}>{file.title}</div>
+                <div className={cls.upload}>{file.dateUpload.toString()}</div>
             </div>
             <div className={cls.hovered}></div>
         </div>

@@ -1,10 +1,14 @@
 import React from 'react';
 import cls from "../scssModules/ToolBar.module.scss"
 
-const ToolBar = () => {
+interface IToolBarProps{
+    openUploadForm:()=>void
+}
+
+const ToolBar = ({openUploadForm}:IToolBarProps) => {
     return (
         <div className={cls.bar}>
-            Загрузить файл
+            <button onClick={openUploadForm}> Загрузить файл</button>
         </div>
     );
 };

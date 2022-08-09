@@ -31,14 +31,14 @@ public class UserFile {
     @JoinColumn(name = "iduser",nullable = false)
     private User user;
 
-    //@Lob
-    //@Column(name = "fileBin")
-    //private Blob fileBin;
+    @Lob
+    @Column(name = "fileBin")
+    private Blob fileBin;
 
-    public UserFile(String title, Date dateUpload, User user) {
+    public UserFile(String title, Date dateUpload, User user, Blob fileBin) {
         this.title = title;
         this.dateUpload = dateUpload;
         this.user = user;
+        this.fileBin = fileBin;
     }
-
 }

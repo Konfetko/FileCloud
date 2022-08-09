@@ -1,7 +1,19 @@
+
 .container{
   border:50px solid #7676E5;
   margin-top: 75px;
   width: 100%;
-  display: flex;
   padding: 5%;
+  height: 100%;
+  display: grid;
+
+}
+.aloneGrid{
+  grid-template-columns: repeat(1,1fr);
+}
+.twoGrid{
+  grid-template-columns: repeat(2,1fr);
+}
+.thirtGrid{
+  grid-template-columns: repeat(3,1fr);
 }

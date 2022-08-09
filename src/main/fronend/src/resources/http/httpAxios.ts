@@ -9,6 +9,8 @@ const sender = axios.create({
 sender.interceptors.request.use( (config)=> {
     // @ts-ignore
     config.headers.Authorization =`Bearer ${localStorage.getItem("token")}`
+    // @ts-ignore
+    //config.headers["Content-Type"] = "multipart/form-data"
     return config
 })
 export default sender;
