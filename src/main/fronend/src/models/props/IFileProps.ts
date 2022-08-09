@@ -2,6 +2,6 @@ import IUserFile from "../IUserFile";
 
 export default interface IFileProps{
     file:IUserFile,
-    openFile:(fileId:number)=>void,
+    openFile:(file:IUserFile)=>void,
     openContextMenu:(fileId:number,e:React.MouseEvent)=>void
 }

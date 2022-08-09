@@ -8,7 +8,7 @@ const File = ({file,openFile,openContextMenu}:IFileProps) => {
         <div
             className={cls.outer}
             onContextMenu={(e)=>openContextMenu(file.idFile,e)}
-            onDoubleClick={()=>openFile(file.idFile)}
+            onDoubleClick={()=>openFile(file)}
         >
             <div className={cls.inner}>
 

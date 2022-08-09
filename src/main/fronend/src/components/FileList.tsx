@@ -17,12 +17,13 @@ const FileList = ({openFile,openContextMenu}:IFileListProps) => {
     },[])
     useEffect(()=>{
         const width = windowSize.width
-        if(width<1800)
+        if(width<1600 && width!==0)
             setClassGrid(cls.twoGrid)
-        if(width<1000)
-            setClassGrid(cls.aloneGrid)
         if(width>1600)
             setClassGrid(cls.thirtGrid)
+        if(width<1100 && width!==0)
+            setClassGrid(cls.aloneGrid)
+
 
     },[windowSize.width])
     return (

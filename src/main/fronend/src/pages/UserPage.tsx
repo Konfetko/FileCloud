@@ -8,18 +8,18 @@ import {useUser} from "../hooks/user";
 import FileService from "../services/FileService";
 import UploadForm from "../components/UploadForm";
 import Modal from "../components/Modal";
+import IUserFileBlob from "../models/IUserFileBlob";
+import IUserFile from "../models/IUserFile";
 
 const UserPage = () => {
     const [isOpelFile,setOpenFile] = useState(false)
     const [openUpload,setOpenUpload]=useState(false)
-    const [blob,setBlob] = useState<Blob>()
+    const [blob,setBlob] = useState<IUserFileBlob>()
     const {user} = useUser()
-    const openFile=async (fileId:number)=>{
-        alert(fileId)
-        console.log(user?.idUser)
+    const openFile=async (file:IUserFile)=>{
         const fileService = new FileService()
         // @ts-ignore
-        await fileService.getFile(fileId).then(res=>setBlob(res.data))
+        await fileService.getFile(file.idFile).then(res=>setBlob({info:file,file:res.data}))
         setOpenFile(true)
 
 

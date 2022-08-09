@@ -9,7 +9,7 @@ export default class FileService{
      getFiles(userID:number){//:Promise<AxiosResponse<IUserFile[]>>{
         return  sender.get(`/files/getFiles${userID}`)
     }
-    async getFile(fileId:number):Promise<AxiosResponse<IUserFile>>{
+    async getFile(fileId:number):Promise<AxiosResponse<Blob>>{
         return  sender.get(`/files/getFile${fileId}`,{responseType:'blob'})
     }
     async deleteFile(){

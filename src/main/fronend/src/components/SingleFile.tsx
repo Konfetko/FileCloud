@@ -1,29 +1,33 @@
-import React, {useEffect, useRef, useState} from 'react';
-import cls from '../scssModules/SingleFile.module.scss'
+import React, {useEffect, useState} from 'react';
 import ISingleFileProps from "../models/props/ISingleFileProps";
-import useFile from "../hooks/file";
-import {Img} from "react-image";
-import DocViewer from "@cyntler/react-doc-viewer";
-import Modal from "./Modal";
 
 
 const SingleFile = ({blobFile}:ISingleFileProps) => {
     const [url,setUrl] = useState<string>("")
+    const [text,setText] = useState<string>("")
+    const [element,setElement] = useState<HTMLElement>()
+
+    const chooseFileFormat=()=>{
+        const arr = blobFile.info.title.split('.')
+        const format = arr[arr.length-1]
+        switch (format){
+            case "txt":
+                blobFile.file.text().then(r=>setText(r))
+                 return <div>{text}</div>
+            case "jpg" ||"png"||"jpeg":
+                setUrl(URL.createObjectURL(blobFile.file))
+                return <img src={url} alt="ваша картинка"/>
+        }
+    }
     useEffect(()=>{
-        setUrl(URL.createObjectURL(blobFile))
+        // @ts-ignore
+        setElement(chooseFileFormat())
     },[])
+
 
     return (
         <>
-                {
-                    <div>
-                        <img alt="картинка" src={url}/>
-                        <DocViewer documents={[{uri:url}]}/>
-                    </div>
-                }
-
-
-
+            {element}
         </>
     );
 };
