@@ -1,0 +1,31 @@
+.mainContainer{
+
+  width: 500px;
+  font-family: "Dubai Medium";
+  border-top: 350px solid #7676E5;
+  border-bottom: 650px solid #7676E5;
+  border-right: 20px solid #7676E5;
+
+
+  .title{
+    text-align: center;
+    font-size: 24pt;
+  }
+  .formats{
+    margin-top: 15px;
+    font-size: 22pt;
+    font-weight: bold;
+    text-align: center;
+  }
+  .instructions{
+    margin-top: 50px;
+    text-align: center;
+  }
+  .instruction{
+    margin-top: 25px;
+    font-size: 22pt;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+}

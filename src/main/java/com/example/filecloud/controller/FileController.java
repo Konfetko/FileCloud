@@ -1,31 +1,19 @@
 package com.example.filecloud.controller;
 
-import com.example.filecloud.entity.UserFile;
-import com.example.filecloud.fileUpload.LobConverter;
-import com.example.filecloud.repository.UserFileRepository;
-import com.example.filecloud.repository.UserRepository;
+
 import com.example.filecloud.response.FileResponse;
 import com.example.filecloud.service.FileService;
-import com.example.filecloud.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.sql.rowset.serial.SerialBlob;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 
@@ -36,10 +24,6 @@ import java.util.List;
 @Slf4j
 public class FileController {
     private final FileService fileService;
-    private final UserService userService;
-    private final UserFileRepository fileRepository;
-    private final UserRepository userRepository;
-
     @PostMapping(path="/fileupload{userId}",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -63,5 +47,14 @@ public class FileController {
 
 
 
+    }
+    @DeleteMapping("/deleteFile{fileId}")
+    public ResponseEntity deleteUserFile(@PathVariable("fileId") Long fileId) {
+        try{
+            fileService.deleteFile(fileId);
+            return ResponseEntity.ok("File was deleted");
+        }catch (Exception ex){
+            return ResponseEntity.badRequest().body("File isn't deleted | "+ex.getMessage());
+        }
     }
 }

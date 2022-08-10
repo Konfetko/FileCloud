@@ -9,6 +9,7 @@ const Header = () => {
     const {store} = useContext(Context)
     const logOut = async()=>{
         await store.logout()
+        document.location.reload()
     }
     return (
         <header >

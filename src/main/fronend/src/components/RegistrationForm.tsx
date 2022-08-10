@@ -18,6 +18,7 @@ const RegistrationForm = ({change}:IChangeVisibility) => {
 
     const authorize= (event: React.FormEvent)=>{
         event.preventDefault()
+
         let userService: AuthService = new AuthService()
         userService.registrationUser(user)
         if(store.isAuth)

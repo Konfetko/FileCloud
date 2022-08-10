@@ -12,7 +12,7 @@ export default class FileService{
     async getFile(fileId:number):Promise<AxiosResponse<Blob>>{
         return  sender.get(`/files/getFile${fileId}`,{responseType:'blob'})
     }
-    async deleteFile(){
-
+    async deleteFile(fileId:number){
+        return sender.delete(`/files/deleteFile${fileId}`)
     }
 }

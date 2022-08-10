@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from "../scssModules/SingleFile.module.scss";
+import cls from "../scssModules/Modal.module.scss";
 
 interface IModalProps{
     children:React.ReactNode,

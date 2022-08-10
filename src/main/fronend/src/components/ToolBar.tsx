@@ -8,7 +8,10 @@ interface IToolBarProps{
 const ToolBar = ({openUploadForm}:IToolBarProps) => {
     return (
         <div className={cls.bar}>
-            <button onClick={openUploadForm}> Загрузить файл</button>
+            <div className={cls.innerBar}>
+                <h2>Вспомогательная панель</h2>
+                <button onClick={openUploadForm} className={cls.button}> Загрузить файл</button>
+            </div>
         </div>
     );
 };

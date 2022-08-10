@@ -13,9 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.Blob;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,7 +44,7 @@ public class FileService {
         return file.getFileBin();
     }
     @Transactional
-    public void deleteFile(Long userID,Long fileId){
+    public void deleteFile(Long fileId){
         try{
             UserFile file = fileRepository.findById(fileId).get();
             if(file==null)throw new NullPointerException("File is null");

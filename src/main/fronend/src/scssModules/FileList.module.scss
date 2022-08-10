@@ -1,13 +1,13 @@
-
 .container{
   border:50px solid #7676E5;
+  background-color: #f1eded;
   margin-top: 75px;
-  width: 100%;
-  padding: 5%;
-  height: 100%;
+  width: 60%;
+  padding: 2%;
   display: grid;
   grid-template-columns: repeat(3,1fr);
-
+  overflow-y: auto;
+  overflow-x: unset;
 }
 .aloneGrid{
   grid-template-columns: repeat(1,1fr);

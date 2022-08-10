@@ -1,21 +1,13 @@
-.opacityContainer{
-  position: fixed;
-  background-color: black;
-  opacity: 50%;
-  top:0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  padding: 20px;
+@import "ToolBar.module";
+.toolBar{
+  border:1px solid black;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  border-radius: 25px;
+  background-color: #7676e5;
 }
-.innerDocument{
-  background-color: white;
-  width: 1000px;
-  height: 80%;
-  border-radius: 50px;
-  position: absolute;
-  top:150px;
-  left: 26%;
-  translate-x:-1/2;
-  padding: 50px;
+.button{
+
 }

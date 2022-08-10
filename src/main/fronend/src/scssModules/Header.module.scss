@@ -15,6 +15,7 @@ $left-right-padding: 10px;
 }
 .link{
   padding: 0px $left-right-padding 0px $left-right-padding;
+
 }
 .noneDecor{
   color:white;
@@ -35,4 +36,7 @@ $left-right-padding: 10px;
 .logoLink{
   text-decoration: none ;
   color:white;
+  &:hover{
+    color:gainsboro;
+  }
 }

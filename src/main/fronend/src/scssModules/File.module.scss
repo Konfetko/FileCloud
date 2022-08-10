@@ -1,15 +1,12 @@
 $left-right-margin: 40px;
 $file-size:310px;
+
 .outer{
-  border:1px solid black;
-  margin-left: $left-right-margin;
-  margin-right: $left-right-margin;
   position: relative;
   top: 0;
   left: 0;
   width: $file-size;
   height: $file-size;
-  margin-bottom: $left-right-margin;
 }
 .title,.upload{
   font-size: 15pt;
@@ -28,7 +25,7 @@ $file-size:310px;
   left: 0;
 }
 .hovered{
-
+  border-radius: 25px;
   &:hover{
     background-color: blue;
     opacity: 7.5%;

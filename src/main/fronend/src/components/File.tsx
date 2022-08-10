@@ -1,25 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import cls from '../scssModules/File.module.scss'
 import IFileProps from "../models/props/IFileProps";
+import Card from "./Card";
 
 
 const File = ({file,openFile,openContextMenu}:IFileProps) => {
-    return (
-        <div
-            className={cls.outer}
-            onContextMenu={(e)=>openContextMenu(file.idFile,e)}
-            onDoubleClick={()=>openFile(file)}
-        >
-            <div className={cls.inner}>
 
-                <div >
-                    <img src={require('../images/filePNG.png')} alt="file" className={cls.image}/>
+    return (
+        <Card width={310} height={310}>
+            <div
+                className={cls.outer}
+                onContextMenu={(e)=>openContextMenu(file.idFile,e)}
+                onDoubleClick={()=>openFile(file)}
+            >
+                <div className={cls.inner}>
+
+                    <div >
+                        <img src={require('../images/filePNG.png')} alt="file" className={cls.image}/>
+                    </div>
+                    <div className={cls.title}>{file.title}</div>
+                    <div className={cls.upload}>{new Date(file.dateUpload).toDateString()}</div>
                 </div>
-                <div className={cls.title}>{file.title}</div>
-                <div className={cls.upload}>{file.dateUpload.toString()}</div>
+                <div className={cls.hovered}></div>
             </div>
-            <div className={cls.hovered}></div>
-        </div>
+        </Card>
     );
 };
 
