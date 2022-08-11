@@ -6,26 +6,25 @@ import {Context} from "../index";
 import IUserClient from "../models/IUserClient";
 import validateUser from "../hooks/validate";
 import Error from "./Error";
+import useValidate from "../hooks/validate";
 
 
 
 const LoginForm = ({change}:IChangeVisibility) => {
 
-    let [user,setUser] = useState<IUserClient>({ username:"",password:"",role:{roleTitle:""}})
-    const [error,setError] = useState('')
-    let [inputType,setInputType]= useState<String>("password")
-    let navigate = useNavigate()
+    const [user,setUser] = useState<IUserClient>({ username:"",password:"",role:{roleTitle:""}})
+    const [inputType,setInputType]= useState<String>("password")
+    const navigate = useNavigate()
+    const {error,isValidated, validate} = useValidate(user)
     const {store} = useContext(Context)
 
 
     const authorize= async(event: React.FormEvent)=>{
         event.preventDefault()
-
-        setError(validateUser(user))
-        if(!error){
+        validate()
+        if(!isValidated)
             return
-        }
-        console.log(error)
+
 
         const response = await store.login(user)
         if(store.isAuth)

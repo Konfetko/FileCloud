@@ -6,7 +6,7 @@ import IFileListProps from "../models/props/IFileListProps";
 
 
 
-const FileList = ({openFile,openContextMenu}:IFileListProps) => {
+const FileList = ({openFile}:IFileListProps) => {
     const {files}=useFiles()
     const [windowSize,setWindowSize] = useState({width:0,height:0})
     const [classGrid,setClassGrid]=useState<string>(cls.thirtGrid)
@@ -29,7 +29,7 @@ const FileList = ({openFile,openContextMenu}:IFileListProps) => {
     return (
         <div className={cls.container +" "+classGrid}>
             {
-                files && files.map(x=><File key={x.idFile} file={x} openFile={openFile} openContextMenu={openContextMenu}/>)
+                files && files.map(x=><File key={x.idFile} file={x} openFile={openFile}/>)
             }
         </div>
     );

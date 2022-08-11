@@ -3,7 +3,7 @@ package com.example.filecloud.service;
 import com.example.filecloud.entity.UserFile;
 import com.example.filecloud.entity.User;
 
-import com.example.filecloud.fileUpload.LobConverter;
+import com.example.filecloud.converter.LobConverter;
 import com.example.filecloud.repository.UserFileRepository;
 import com.example.filecloud.repository.UserRepository;
 import com.example.filecloud.response.FileResponse;

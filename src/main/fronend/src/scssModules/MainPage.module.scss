@@ -1,4 +1,5 @@
-
+$circle-border-radius:200px;
+$triangle-color: #1D2033;
 @keyframes hithere {
   30% { transform: scale(1.2); }
   40%, 60% { transform: rotate(-20deg) scale(1.2); }
@@ -7,9 +8,10 @@
   100% { transform: scale(1); }
 }
 .background{
+  background-color: #7676E5;
   width: 100%;
   height: 1200px;
-
+  position: relative;
 }
 .documentImage{
   width: 150px;
@@ -22,9 +24,10 @@
 .nextLink{
   position: absolute;
   margin-top: 20px;
-  left: 45%;
+  left: 46%;
   top:425px;
   padding: 10px;
+
 }
 .underImage{
   font-weight: bold;
@@ -35,4 +38,66 @@
 }
 .link{
   text-decoration: none;
+}
+.triangle{
+  position: relative;
+  top:1200px;
+  //.top,.right,.left,.down{
+  //  -webkit-box-shadow: 0px 0px 8px 8px rgba(34, 60, 80, 0.2);
+  //  -moz-box-shadow: 0px 0px 8px 8px rgba(34, 60, 80, 0.2);
+  //  box-shadow: 0px 0px 8px 8px rgba(34, 60, 80, 0.2);
+  //}
+}
+.down{
+  position: absolute;
+  bottom: 0;
+
+  border-left: 49vw solid transparent;
+  border-right: 50vw solid transparent;
+  border-bottom: 550px solid $triangle-color;
+}
+.right{
+  position: absolute;
+  top:-1110px;
+  right:0;
+
+  border-top: 500px solid transparent;
+  border-right: 45vw solid  $triangle-color;
+  border-bottom: 550px solid transparent;
+}
+.top{
+  position: absolute;
+  top:-1130px;
+  left:3vw;
+  border-left: 45vw solid transparent;
+  border-right: 48vw solid transparent;
+  border-top: 450px solid  $triangle-color;
+}
+.left{
+  position: absolute;
+  top:-1110px;
+
+  border-top: 500px solid transparent;
+  border-left: 45vw solid  $triangle-color;
+  border-bottom: 550px solid transparent;
+}
+@function  m(){
+  @return 58% - 14%/0.55;
+}
+.circle{
+  position: absolute;
+  width: 35%;
+  min-width: 330px;
+  height: 400px;
+  background-color: $triangle-color;
+  -moz-border-radius: $circle-border-radius;
+  -webkit-border-radius: $circle-border-radius;
+  border-radius: $circle-border-radius;
+
+  top:-825px;
+  left: m();
+
+  -webkit-box-shadow: 0px 0px 10px 17px rgba(0, 0, 0, 0.36) inset;
+  -moz-box-shadow: 0px 0px 10px 17px rgba(0, 0, 0, 0.36) inset;
+  box-shadow: 0px 0px 10px 17px rgba(0, 0, 0, 0.36) inset;
 }

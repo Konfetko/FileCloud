@@ -31,16 +31,24 @@ const UserPage = () => {
     const openUploadForm=()=>{
         setOpenUpload(true)
     }
-    const openContextMenu=(id:number,e:React.MouseEvent)=>{
 
+    const saveFile=()=>{
+        // @ts-ignore
+        aRef.current.click()
     }
-
+    const deleteFile=(blobFile:IUserFileBlob)=>{
+        // eslint-disable-next-line no-restricted-globals
+        let result:boolean = confirm("Вы уверены что хотите удалить файл?")
+        if(!result)return
+        const fileService:FileService = new FileService()
+        fileService.deleteFile(blobFile.info.idFile).then(r=>document.location.reload()).catch(e=>console.log(e))
+    }
     return (
 
         <Layout>
             <div className={cls.doubleContainer}>
                 <ToolBar openUploadForm={openUploadForm}/>
-                <FileList openFile={openFile} openContextMenu={openContextMenu}/>
+                <FileList openFile={openFile} />
                 <About/>
                 { // @ts-ignore
                     isOpelFile && <Modal onClose={closeFile}><SingleFile blobFile={blob}/></Modal>

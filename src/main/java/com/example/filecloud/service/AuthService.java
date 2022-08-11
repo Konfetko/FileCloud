@@ -1,9 +1,8 @@
 package com.example.filecloud.service;
 
-import com.auth0.jwt.JWT;
 import com.example.filecloud.entity.Role;
 import com.example.filecloud.exeption.ExpiredToken;
-import com.example.filecloud.repository.RolesRepository;
+import com.example.filecloud.repository.RoleRepository;
 import com.example.filecloud.repository.UserRepository;
 import com.example.filecloud.config.JwtTokenUtil;
 import com.example.filecloud.entity.User;
@@ -30,7 +29,7 @@ public class AuthService {
     private UserRepository userRepository;
 
     @Autowired
-    private RolesRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;

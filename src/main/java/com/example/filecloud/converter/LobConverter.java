@@ -1,4 +1,4 @@
-package com.example.filecloud.fileUpload;
+package com.example.filecloud.converter;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

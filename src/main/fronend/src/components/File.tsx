@@ -4,13 +4,12 @@ import IFileProps from "../models/props/IFileProps";
 import Card from "./Card";
 
 
-const File = ({file,openFile,openContextMenu}:IFileProps) => {
+const File = ({file,openFile}:IFileProps) => {
 
     return (
         <Card width={310} height={310}>
             <div
                 className={cls.outer}
-                onContextMenu={(e)=>openContextMenu(file.idFile,e)}
                 onDoubleClick={()=>openFile(file)}
             >
                 <div className={cls.inner}>

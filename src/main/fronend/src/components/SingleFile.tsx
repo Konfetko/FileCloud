@@ -4,7 +4,7 @@ import cls from '../scssModules/SingleFile.module.scss'
 import FileService from "../services/FileService";
 
 
-const SingleFile = ({blobFile}:ISingleFileProps) => {
+const SingleFile = ({blobFile,saveFile,deleteFile}:ISingleFileProps) => {
     const [url,setUrl] = useState<string>("")
     const [text,setText] = useState<string>("")
     const [isImage,setIsImage]=useState<boolean>(false)
@@ -25,23 +25,13 @@ const SingleFile = ({blobFile}:ISingleFileProps) => {
         }
     },[])
 
-    const saveFile=()=>{
-        // @ts-ignore
-        aRef.current.click()
-    }
-    const deleteFile=()=>{
-        // eslint-disable-next-line no-restricted-globals
-        let result:boolean = confirm("Вы уверены что хотите удалить файл?")
-        if(!result)return
-        const fileService:FileService = new FileService()
-        fileService.deleteFile(blobFile.info.idFile).then(r=>document.location.reload()).catch(e=>console.log(e))
-    }
+
 
     return (
         <>
             <div className={cls.toolBar}>
-                <button className={cls.button} onClick={saveFile}>Сохранить</button>
-                <button className={cls.button} onClick={deleteFile}>Удалить</button>
+                <button className={cls.button} onClick={()=>saveFile()}>Сохранить</button>
+                <button className={cls.button} onClick={()=>deleteFile(blobFile)}>Удалить</button>
             </div>
             {
                 // @ts-ignore
