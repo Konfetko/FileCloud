@@ -1,6 +1,5 @@
 import sender from "../resources/http/httpAxios";
 import {AxiosResponse} from "axios";
-import IUserFile from "../models/IUserFile";
 
 export default class FileService{
     async uploadFile(userID:number,file:any){//,{headers:{"Content-Type":"multipart/form-data"}}

@@ -16,7 +16,7 @@ import java.net.URI;
 @RestController
 @CrossOrigin(value="http://localhost:3000",allowCredentials = "true")
 @RequiredArgsConstructor
-@RequestMapping("/users")
+@RequestMapping("/users/")
 public class UserController {
 
     private final AuthService authService;

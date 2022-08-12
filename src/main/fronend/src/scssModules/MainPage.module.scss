@@ -12,6 +12,10 @@ $triangle-color: #1D2033;
   width: 100%;
   height: 1200px;
   position: relative;
+
+  -webkit-box-shadow: 1px 8px 3px 0px rgba(34, 60, 80, 0.2) inset;
+  -moz-box-shadow: 1px 8px 3px 0px rgba(34, 60, 80, 0.2) inset;
+  box-shadow: 1px 8px 3px 0px rgba(34, 60, 80, 0.2) inset;
 }
 .documentImage{
   width: 150px;

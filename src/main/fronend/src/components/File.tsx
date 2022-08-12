@@ -7,7 +7,7 @@ import Card from "./Card";
 const File = ({file,openFile}:IFileProps) => {
 
     return (
-        <Card width={310} height={310}>
+        <Card width={210} height={210}>
             <div
                 className={cls.outer}
                 onDoubleClick={()=>openFile(file)}

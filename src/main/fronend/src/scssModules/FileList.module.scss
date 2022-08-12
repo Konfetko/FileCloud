@@ -8,6 +8,7 @@
   grid-template-columns: repeat(3,1fr);
   overflow-y: auto;
   overflow-x: unset;
+  min-width: 300px;
 }
 .aloneGrid{
   grid-template-columns: repeat(1,1fr);

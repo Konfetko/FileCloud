@@ -4,9 +4,7 @@ import cls from "../scssModules/AuthorizationPage.module.scss";
 import IChangeVisibility from "../models/IChangeVisibility";
 import {Context} from "../index";
 import IUserClient from "../models/IUserClient";
-import validateUser from "../hooks/validate";
 import Error from "./Error";
-import useValidate from "../hooks/validate";
 
 
 
@@ -15,18 +13,14 @@ const LoginForm = ({change}:IChangeVisibility) => {
     const [user,setUser] = useState<IUserClient>({ username:"",password:"",role:{roleTitle:""}})
     const [inputType,setInputType]= useState<String>("password")
     const navigate = useNavigate()
-    const {error,isValidated, validate} = useValidate(user)
     const {store} = useContext(Context)
-
+    const [error,setError] = useState('')
 
     const authorize= async(event: React.FormEvent)=>{
         event.preventDefault()
-        validate()
-        if(!isValidated)
-            return
 
 
-        const response = await store.login(user)
+        await store.login(user)
         if(store.isAuth)
             navigate(`/user/files${store.user.idUser}`)
     }
