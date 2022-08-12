@@ -8,6 +8,7 @@ import com.example.filecloud.config.JwtTokenUtil;
 import com.example.filecloud.entity.User;
 import com.example.filecloud.request.UserDTO;
 import com.example.filecloud.response.JwtResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,23 +17,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 public class AuthService {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public JwtResponse login(UserDTO user) {
 

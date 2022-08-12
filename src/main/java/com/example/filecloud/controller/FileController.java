@@ -31,14 +31,14 @@ public class FileController {
     public void uploadFile(@PathVariable("userId") Long userId,@RequestParam("file") MultipartFile file){
        fileService.saveFile(file,userId);
     }
-    @GetMapping(path = "/getFiles{userId}")
+    @GetMapping(path = "/fileList{userId}")
     public ResponseEntity sendUserFiles(@PathVariable("userId") Long userId){
         List<FileResponse> files = fileService.getUserFiles(userId);
         return files==null
                 ?ResponseEntity.badRequest().body("Файлы отстутствуют")
                 :ResponseEntity.ok(files);
     }
-    @GetMapping("/getFile{fileId}")
+    @GetMapping("/file{fileId}")
     public ResponseEntity sendUserFile(@PathVariable("fileId") Long fileId) throws IOException, SQLException {
         Blob blobFile = fileService.getUserFile(fileId);
         return blobFile==null
@@ -48,7 +48,7 @@ public class FileController {
 
 
     }
-    @DeleteMapping("/deleteFile{fileId}")
+    @DeleteMapping("/file{fileId}")
     public ResponseEntity deleteUserFile(@PathVariable("fileId") Long fileId) {
         try{
             fileService.deleteFile(fileId);

@@ -1,6 +1,6 @@
 package com.example.filecloud.filter;
 
-import com.example.filecloud.config.Const;
+import com.example.filecloud.config.JWTConsts;
 import com.example.filecloud.config.JwtTokenUtil;
 import com.example.filecloud.entity.User;
 import com.example.filecloud.repository.UserRepository;
@@ -32,9 +32,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
 
-        String authHeader = request.getHeader( Const.HEADER_STRING );
-        if (authHeader != null && authHeader.startsWith( Const.TOKEN_PREFIX )) {
-            final String authToken = authHeader.substring( Const.TOKEN_PREFIX.length() );
+        String authHeader = request.getHeader( JWTConsts.HEADER_STRING );
+        if (authHeader != null && authHeader.startsWith( JWTConsts.TOKEN_PREFIX )) {
+            final String authToken = authHeader.substring( JWTConsts.TOKEN_PREFIX.length() );
             String username = jwtTokenUtil.getUsernameFromToken(authToken);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 User userDetails = userRepository.findUserByUsername(username);

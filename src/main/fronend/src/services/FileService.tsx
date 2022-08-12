@@ -7,12 +7,12 @@ export default class FileService{
         return await sender.post(`/files/fileupload${userID}`,file,{headers:{"Content-Type":"multipart/form-data"}})
     }
      getFiles(userID:number){//:Promise<AxiosResponse<IUserFile[]>>{
-        return  sender.get(`/files/getFiles${userID}`)
+        return  sender.get(`/files/fileList${userID}`)
     }
     async getFile(fileId:number):Promise<AxiosResponse<Blob>>{
-        return  sender.get(`/files/getFile${fileId}`,{responseType:'blob'})
+        return  sender.get(`/files/file${fileId}`,{responseType:'blob'})
     }
     async deleteFile(fileId:number){
-        return sender.delete(`/files/deleteFile${fileId}`)
+        return sender.delete(`/files/file${fileId}`)
     }
 }

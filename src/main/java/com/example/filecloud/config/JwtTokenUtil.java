@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -60,7 +58,7 @@ public class JwtTokenUtil implements Serializable {
         Claims claims;
         try {
             claims = Jwts.parser()
-                    .setSigningKey( Const.SECRET )
+                    .setSigningKey( JWTConsts.SECRET )
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
@@ -70,7 +68,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
     private Date generateExpirationDate() {
-        return new Date(System.currentTimeMillis() + Const.EXPIRATION_TIME);
+        return new Date(System.currentTimeMillis() + JWTConsts.EXPIRATION_TIME);
     }
 
     private Boolean isTokenExpired(String token) {
@@ -94,7 +92,7 @@ public class JwtTokenUtil implements Serializable {
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
-                .signWith(SignatureAlgorithm.HS512, Const.SECRET )
+                .signWith(SignatureAlgorithm.HS512, JWTConsts.SECRET )
                 .compact();
     }
 

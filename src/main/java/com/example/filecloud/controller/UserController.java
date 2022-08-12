@@ -31,7 +31,6 @@ public class UserController {
     }
     @PostMapping("/registration")
     public ResponseEntity registration(@RequestBody User user){
-        //URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/registration").toUriString());
         JwtResponse response = authService.register(user);
         return (response==null)
                 ?ResponseEntity.badRequest().body("Пользователь с таким логином уже зарегистрирован")
