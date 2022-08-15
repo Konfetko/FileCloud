@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/FileCloud-Spring-React/static/css/main.8df18849.css",
+    "main.js": "/FileCloud-Spring-React/static/js/main.250cf8fc.js",
+    "static/media/documents.png": "/FileCloud-Spring-React/static/media/documents.3e35ec277cc45decc4e7.png",
+    "static/media/filePNG.png": "/FileCloud-Spring-React/static/media/filePNG.6f7a3aa09e656e1d76bb.png",
+    "index.html": "/FileCloud-Spring-React/index.html",
+    "main.8df18849.css.map": "/FileCloud-Spring-React/static/css/main.8df18849.css.map",
+    "main.250cf8fc.js.map": "/FileCloud-Spring-React/static/js/main.250cf8fc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8df18849.css",
+    "static/js/main.250cf8fc.js"
+  ]
+}
